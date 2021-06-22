@@ -100,7 +100,19 @@ public class BasicItemController {
         return "basic/item";
     }
 
+    @GetMapping("/{itemId}/edit") //수정 화면으로 이동
+    public String editForm(@PathVariable Long itemId, Model model){
+        Item item = itemRepository.findById(itemId);
+        model.addAttribute("item", item);
+        return "basic/editForm";
+    }
 
+    @PostMapping("/{itemId}/edit") //수정 작업
+    public String edit(@ModelAttribute Item item){
+
+
+        return "basic/item";
+    }
 
 
     /**
