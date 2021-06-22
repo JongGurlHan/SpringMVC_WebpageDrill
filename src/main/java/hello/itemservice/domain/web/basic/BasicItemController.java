@@ -100,18 +100,18 @@ public class BasicItemController {
         return "basic/item";
     }
 
-    @GetMapping("/{itemId}/edit") //수정 화면으로 이동
+    @GetMapping("/{itemId}/edit") //수정 폼으로 이동
     public String editForm(@PathVariable Long itemId, Model model){
         Item item = itemRepository.findById(itemId);
         model.addAttribute("item", item);
         return "basic/editForm";
     }
 
-    @PostMapping("/{itemId}/edit") //수정 작업
-    public String edit(@ModelAttribute Item item){
-
-
-        return "basic/item";
+    @PostMapping("/{itemId}/edit") //수정 vjgl
+    public String edit(@PathVariable Long itemId, @ModelAttribute Item item){
+        itemRepository.update(itemId, item);
+        return "redirect:/basic/items/{itemId}";
+        //http://localhost:8080/basic/items/2/edit 가 아닌 http://localhost:8080/basic/items/2 로이동
     }
 
 
